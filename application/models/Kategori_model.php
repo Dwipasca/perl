@@ -41,6 +41,18 @@ class Kategori_model extends CI_Model
             return false;
         }
     }
+
+    function deleteKategori()
+    {
+        $id = $this->input->get('id_kategori');
+        $this->db->where('id_kategori', $id);
+        $this->db->delete('kategori');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     function getDataKategori()
     {
         $this->db->order_by('kategori', 'asc');

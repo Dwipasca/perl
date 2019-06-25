@@ -43,4 +43,14 @@ class Kategori extends CI_Controller
         }
         echo json_encode($msg);
     }
+
+    public function hapusKategori()
+    {
+        $result = $this->kategori_model->deleteKategori();
+        $msg['success'] = false;
+        if ($result) {
+            $msg['success'] = true;
+        }
+        echo json_encode($msg);
+    }
 }

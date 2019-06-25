@@ -89,6 +89,27 @@
         </div>
     </div>
     <!-- tutup modal tambah kategori -->
+
+    <!-- modal delete -->
+    <div class="modal modal-danger fade in" id="modal-danger" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Konfirmasi Menghapus Kategori</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah anda yakin ingin menghapus kategori ini ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" data-dismiss="modal">Tidak</button>
+                    <button type="button" class="btn btn-outline" id="btnDelete">Ya</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- tutup modal delete -->
 </div>
 
 <script>
@@ -111,8 +132,8 @@
                                     '<td>' + (i + 1) + '</td>' +
                                     '<td style="text-align: center">' + data[i].kategori + '</td>' +
                                     '<td>' +
-                                    '<a href="javascript:;" class="btn bg-purple margin item-edit" data="' + data[i].id_kategori + '">Update </a>' + ' ' +
-                                    '<a href="javascript:;" class="btn btn-danger">Delete </a>' +
+                                    '<a href="javascript:;" class="btn bg-purple margin item-edit" data="' + data[i].id_kategori + '">Update </a>' + '' +
+                                    '<a href="javascript:;" class="btn btn-danger item-delete" data="' + data[i].id_kategori + '">Delete </a>' +
                                     '</td>' +
                                     '</tr>';
                             }
@@ -194,6 +215,34 @@
                         error: function() {
                             alert('tidak bisa melakukan ubah kategori');
                         }
+                    });
+                });
+                //Delete
+                $('tbody').on('click', '.item-delete', function() {
+                    let id_kategori = $(this).attr('data');
+                    $('#modal-danger').modal('show');
+                    $('#btnDelete').unbind().click(function() {
+                        $.ajax({
+                            type: 'ajax',
+                            method: 'get',
+                            url: '<?= base_url('kategori/hapusKategori') ?>',
+                            data: {
+                                id_kategori: id_kategori
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.success) {
+                                    $('#modal-danger').modal('hide');
+                                    $('.alert-success').html('Kategori telah berhasil dihapus').fadeIn().delay(4000).fadeOut('slow');
+                                    showAllData();
+                                } else {
+                                    alert('gagal menghapus kategori')
+                                }
+                            },
+                            error: function() {
+                                alert('Tidak bisa menghapus');
+                            }
+                        });
                     });
                 });
             });
