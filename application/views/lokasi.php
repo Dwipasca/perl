@@ -38,7 +38,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                             </tbody>
                         </table>
                     </div>
@@ -54,7 +53,7 @@
         <!-- /.box -->
     </section>
 
-    <!-- modal tambah kategori -->
+    <!-- modal tambah Lokasi -->
     <div class="modal fade" id="modal-default" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -79,7 +78,7 @@
             </div>
         </div>
     </div>
-    <!-- tutup modal tambah kategori -->
+    <!-- tutup modal tambah Lokasi -->
 
     <!-- modal delete -->
     <div class="modal modal-danger fade in" id="modal-danger" style="display: none;">
@@ -88,10 +87,10 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Konfirmasi Menghapus Kategori</h4>
+                    <h4 class="modal-title">Konfirmasi Menghapus Lokasi</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Apakah anda yakin ingin menghapus kategori ini ?</p>
+                    <p>Apakah anda yakin ingin menghapus Lokasi ini ?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline" data-dismiss="modal">Tidak</button>
@@ -108,8 +107,36 @@
         if ($) {
             clearInterval(i);
             $(function() {
+                showAllData();
 
+                function showAllData() {
+                    $.ajax({
+                        type: 'ajax',
+                        url: '<?= base_url('lokasi/showAllDataLokasi') ?>',
+                        dataType: 'json',
+                        success: function(data) {
+                            let query = '';
+                            let i;
+                            for (i = 0; i < data.length; i++) {
+                                query += '<tr>' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td style="text-align: center">' + data[i].lokasi + '</td>' +
+                                    '<td>' +
+                                    '<a href="javascript:;" class="btn bg-purple margin item-edit" data="' + data[i].id_lokasi + '">Update </a>' + '' +
+                                    '<a href="javascript:;" class="btn btn-danger item-delete" data="' + data[i].id_lokasi + '">Delete </a>' +
+                                    '</td>' +
+                                    '</tr>';
+                            }
+                            $('tbody').html(query);
+                        },
+                        error: function() {
+                            alert('tidak bisa mengambil data dari database');
+                        }
+                    });
+                } // end of showdataall
+                //tambah data dengan ajax
                 $('#btnAdd').click(function() {
+                    $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Lokasi');
                     $('#form-tambah').attr('action', '<?= base_url('lokasi/tambahLokasi'); ?>');
@@ -145,7 +172,7 @@
                                         type = 'diubah';
                                     }
                                     $('.alert-success').html('Lokasi telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
-                                    //showAllData();
+                                    showAllData();
                                 } else {
                                     alert('gagal memasukkan data');
                                 }
@@ -155,35 +182,59 @@
                             }
                         });
                     }
+                }); // end of add lokasi
+
+                //ubah
+                $('tbody').on('click', '.item-edit', function() {
+                    let id_lokasi = $(this).attr('data');
+                    $('#modal-default').modal('show');
+                    $('#modal-default').find('.modal-title').text('Ubah Lokasi');
+                    $('#form-tambah').attr('action', '<?= base_url('lokasi/updateLokasi'); ?>');
+                    $.ajax({
+                        type: 'ajax',
+                        method: 'get',
+                        url: '<?= base_url('lokasi/getLokasi'); ?>',
+                        data: {
+                            id_lokasi: id_lokasi
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('input[name=lokasi]').val(data.lokasi);
+                            $('input[name=txtId]').val(data.id_lokasi);
+                        },
+                        error: function() {
+                            alert('tidak bisa melakukan ubah lokasi');
+                        }
+                    });
+                }); //akhir dari ubah
+                //Delete
+                $('tbody').on('click', '.item-delete', function() {
+                    let id_lokasi = $(this).attr('data');
+                    $('#modal-danger').modal('show');
+                    $('#btnDelete').unbind().click(function() {
+                        $.ajax({
+                            type: 'ajax',
+                            method: 'get',
+                            url: '<?= base_url('lokasi/hapusLokasi') ?>',
+                            data: {
+                                id_lokasi: id_lokasi
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.success) {
+                                    $('#modal-danger').modal('hide');
+                                    $('.alert-success').html('Lokasi telah berhasil dihapus').fadeIn().delay(4000).fadeOut('slow');
+                                    showAllData();
+                                } else {
+                                    alert('gagal menghapus Lokasi')
+                                }
+                            },
+                            error: function() {
+                                alert('Tidak bisa menghapus');
+                            }
+                        });
+                    });
                 });
-                // showAllData();
-
-                // function showAllData() {
-                //     $.ajax({
-                //         type: 'ajax',
-                //         url: '<?= base_url('kategori/showAllDataKategori') ?>',
-                //         dataType: 'json',
-                //         success: function(data) {
-                //             let query = '';
-                //             let i;
-                //             for (i = 0; i < data.length; i++) {
-                //                 query += '<tr>' +
-                //                     '<td>' + (i + 1) + '</td>' +
-                //                     '<td style="text-align: center">' + data[i].kategori + '</td>' +
-                //                     '<td>' +
-                //                     '<a href="javascript:;" class="btn bg-purple margin item-edit" data="' + data[i].id_kategori + '">Update </a>' + '' +
-                //                     '<a href="javascript:;" class="btn btn-danger item-delete" data="' + data[i].id_kategori + '">Delete </a>' +
-                //                     '</td>' +
-                //                     '</tr>';
-                //             }
-                //             $('tbody').html(query);
-                //         },
-                //         error: function() {
-                //             alert('tidak bisa mengambil data dari database');
-                //         }
-                //     });
-                // } // end of showdataall
-
 
             });
         }
