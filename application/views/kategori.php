@@ -147,6 +147,7 @@
 
                 // tambah data dengan ajax
                 $('#btnAdd').click(function() {
+                    $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Kategori');
                     $('#form-tambah').attr('action', '<?= base_url('kategori/tambahKategori'); ?>');
@@ -163,8 +164,8 @@
                         kategori.parent().removeClass('has-error');
                         cek += '1';
                     }
-                    //mengecek apakah semua sudah terisi atau belum
                     let type = '';
+                    //mengecek apakah semua sudah terisi atau belum
                     if (cek === '1') {
                         $.ajax({
                             type: 'ajax',
