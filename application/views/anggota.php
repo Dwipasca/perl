@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <input type="hidden" name="txtId" id="txtId" value="0">
                             <label for="exampleInputEmail1">No. Identitas</label>
-                            <input type="text" class="form-control" id="no_identitas" name="no_identitas" placeholder="Masukkan No. Identitas" autocomplete="off">
+                            <input type="text" class="form-control" id="no-inden" name="no_inden" placeholder="Masukkan No. Identitas" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nama</label>
@@ -136,33 +136,39 @@
         if ($) {
             clearInterval(i);
             $(function() {
-                // showAllData();
+                showAllData();
 
-                // function showAllData() {
-                //     $.ajax({
-                //         type: 'ajax',
-                //         url: '<?= base_url('lokasi/showAllDataLokasi') ?>',
-                //         dataType: 'json',
-                //         success: function(data) {
-                //             let query = '';
-                //             let i;
-                //             for (i = 0; i < data.length; i++) {
-                //                 query += '<tr>' +
-                //                     '<td>' + (i + 1) + '</td>' +
-                //                     '<td style="text-align: center">' + data[i].lokasi + '</td>' +
-                //                     '<td>' +
-                //                     '<a href="javascript:;" class="btn bg-purple margin item-edit" data="' + data[i].id_lokasi + '">Update </a>' + '' +
-                //                     '<a href="javascript:;" class="btn btn-danger item-delete" data="' + data[i].id_lokasi + '">Delete </a>' +
-                //                     '</td>' +
-                //                     '</tr>';
-                //             }
-                //             $('tbody').html(query);
-                //         },
-                //         error: function() {
-                //             alert('tidak bisa mengambil data dari database');
-                //         }
-                //     });
-                // } // end of showdataall
+                function showAllData() {
+                    $.ajax({
+                        type: 'ajax',
+                        url: '<?= base_url('anggota/showAllDataAnggota') ?>',
+                        dataType: 'json',
+                        success: function(data) {
+                            let query = '';
+                            let i;
+                            for (i = 0; i < data.length; i++) {
+                                query += '<tr>' +
+                                    '<td>' + (i + 1) + '</td>' +
+                                    '<td style="text-align: center">' + data[i].no_identitas + '</td>' +
+                                    '<td style="text-align: center">' + data[i].nama + '</td>' +
+                                    '<td style="text-align: center">' + data[i].tgl_lahir + '</td>' +
+                                    '<td style="text-align: center">' + data[i].jenis_kelamin + '</td>' +
+                                    '<td style="text-align: center">' + data[i].alamat + '</td>' +
+                                    '<td style="text-align: center">' + data[i].hp + '</td>' +
+                                    '<td style="text-align: center">' + data[i].tanggal_pembuatan + '</td>' +
+                                    '<td>' +
+                                    '<a href="javascript:;" class="btn bg-purple margin item-edit" data="' + data[i].id_lokasi + '">Update </a>' + '' +
+                                    '<a href="javascript:;" class="btn btn-danger item-delete" data="' + data[i].id_lokasi + '">Delete </a>' +
+                                    '</td>' +
+                                    '</tr>';
+                            }
+                            $('tbody').html(query);
+                        },
+                        error: function() {
+                            alert('tidak bisa mengambil data dari database');
+                        }
+                    });
+                } // end of showdataall
                 //tambah data dengan ajax
                 let cek = '';
 
@@ -185,7 +191,7 @@
                     let url = $('#form-tambah').attr('action');
                     let data = $('#form-tambah').serialize();
                     //validate form'
-                    let no_identitas = $('input[name=no_identitas]');
+                    let no_identitas = $('input[name=no_inden]');
                     let nama = $('input[name=nama]');
                     let tgl = $('input[name=tgl]');
                     let no = $('input[name=no]');
@@ -216,7 +222,7 @@
                                         type = 'diubah';
                                     }
                                     $('.alert-success').html('Anggota telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
-                                    //showAllData();
+                                    showAllData();
                                 } else {
                                     alert('gagal memasukkan data');
                                 }
@@ -225,6 +231,8 @@
                                 alert('tidak bisa menambahkan data');
                             }
                         });
+                    } else {
+                        alert('Ada field yang kosong');
                     }
                 }); // end of add lokasi
 
