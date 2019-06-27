@@ -86,7 +86,7 @@
                     </li>
                     <li>
                         <a href="../mailbox/mailbox.html">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <i class="fa fa-dashboard"></i> <span>Anggota</span>
                         </a>
                     </li>
                     <li>
