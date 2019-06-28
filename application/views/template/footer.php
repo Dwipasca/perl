@@ -16,6 +16,9 @@
 <script src="<?= base_url(); ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?= base_url(); ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- DataTables -->
+<script src="<?= base_url(); ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>assets/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -25,6 +28,18 @@
         $('.sidebar-menu').tree()
     })
 </script>
+<!-- <script>
+    $(function() {
+        $('#example1').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+</script> -->
 </body>
 
 </html>

@@ -6,6 +6,7 @@ class Anggota extends CI_Controller
     {
         parent::__construct();
         $this->load->model('anggota_model');
+        $this->load->library('ssp');
     }
     public function index()
     {
@@ -28,5 +29,42 @@ class Anggota extends CI_Controller
             $msg['success'] = true;
         }
         echo json_encode($msg);
+    }
+
+    function data()
+    {
+        //nama tabel
+        $table = 'anggota';
+        //primary keynya
+        $primaryKey = 'id_anggota';
+        //list field yg akan ditampilkan
+        $columns = array(
+            array('db' => 'id_anggota', 'dt' => 'id_anggota'),
+            array('db' => 'no_identitas', 'dt' => 'no_identitas'),
+            array('db' => 'nama', 'dt' => 'nama'),
+            array('db' => 'tgl_lahir', 'dt' => 'tgl_lahir'),
+            array('db' => 'jenis_kelamin', 'dt' => 'jenis_kelamin'),
+            array('db' => 'alamat', 'dt' => 'alamat'),
+            array('db' => 'hp', 'dt' => 'hp'),
+            array('db' => 'tanggal_pembuatan', 'dt' => 'tanggal_pembuatan'),
+            array(
+                'db' => 'id_anggota',
+                'dt' => 'aksi',
+                'formatter' => function ($d) { // var $d itu untuk ke primary key yaitu nip 
+                    return anchor('akun/edit/' . $d, '<i class="fa fa-edit"></i>', array('class' => 'btn bg-navy btn-xs', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'ubah')) . '  ' .
+                        anchor('akun/delete/' . $d, '<i class="fa fa-trash"></i>', array('class' => 'btn btn-danger btn-xs', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'hapus', 'onclick' => 'return test()'));
+                },
+            )
+        );
+        // SQL server connection information
+        $sql_details = array(
+            'user' => $this->db->username,
+            'pass' => $this->db->password,
+            'db' => $this->db->database,
+            'host' => $this->db->hostname
+        );
+        echo json_encode(
+            SSP::simple($_POST, $sql_details, $table, $primaryKey, $columns)
+        );
     }
 }

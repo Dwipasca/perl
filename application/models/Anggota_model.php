@@ -55,4 +55,5 @@ class Anggota_model extends CI_Model
             return false;
         }
     }
+    
 }

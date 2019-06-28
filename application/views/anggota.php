@@ -23,34 +23,47 @@
             <div class="box-body">
                 <div class="alert alert-success" style="display: none;"></div>
                 <button id="btnAdd" class="btn bg-maroon margin">Tambah Anggota</button>
+                <!-- /.box-header -->
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Daftar Anggota Perpustakaan</h3>
+                        <h3 class="box-title">Data Table With Full Features</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body no-padding">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">No</th>
-                                    <th>No. Identitas</th>
-                                    <th>Nama</th>
-                                    <th>Tanggal Lahir</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat</th>
-                                    <th>No. Hp</th>
-                                    <th>Tanggal Keanggotaan</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                    <div class="box-body">
+                        <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th class="sorting_asc" style="width: 217.8px;">No</th>
+                                                <th class="sorting" style="width: 266.6px;">No. Identitas</th>
+                                                <th class="sorting" style="width: 237px;">Nama</th>
+                                                <th class="sorting" style="width: 187.4px;">Tanggal Lahir</th>
+                                                <th class="sorting" style="width: 134.8px;">Jenis Kelamin</th>
+                                                <th class="sorting" style="width: 134.8px;">Alamat</th>
+                                                <th class="sorting" style="width: 134.8px;">No. Hp</th>
+                                                <th class="sorting" style="width: 134.8px;">Tanggal Bergabung</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th rowspan="1" colspan="1">Rendering engine</th>
+                                                <th rowspan="1" colspan="1">Browser</th>
+                                                <th rowspan="1" colspan="1">Platform(s)</th>
+                                                <th rowspan="1" colspan="1">Engine version</th>
+                                                <th rowspan="1" colspan="1">CSS grade</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.box-body -->
                 </div>
             </div>
-            <!-- /.box-body -->
             <div class="box-footer">
 
             </div>
@@ -136,39 +149,72 @@
         if ($) {
             clearInterval(i);
             $(function() {
-                showAllData();
+                showData();
 
-                function showAllData() {
-                    $.ajax({
-                        type: 'ajax',
-                        url: '<?= base_url('anggota/showAllDataAnggota') ?>',
-                        dataType: 'json',
-                        success: function(data) {
-                            let query = '';
-                            let i;
-                            for (i = 0; i < data.length; i++) {
-                                query += '<tr>' +
-                                    '<td>' + (i + 1) + '</td>' +
-                                    '<td style="text-align: center">' + data[i].no_identitas + '</td>' +
-                                    '<td style="text-align: center">' + data[i].nama + '</td>' +
-                                    '<td style="text-align: center">' + data[i].tgl_lahir + '</td>' +
-                                    '<td style="text-align: center">' + data[i].jenis_kelamin + '</td>' +
-                                    '<td style="text-align: center">' + data[i].alamat + '</td>' +
-                                    '<td style="text-align: center">' + data[i].hp + '</td>' +
-                                    '<td style="text-align: center">' + data[i].tanggal_pembuatan + '</td>' +
-                                    '<td>' +
-                                    '<a href="javascript:;" class="btn bg-purple margin item-edit" data="' + data[i].id_lokasi + '">Update </a>' + '' +
-                                    '<a href="javascript:;" class="btn btn-danger item-delete" data="' + data[i].id_lokasi + '">Delete </a>' +
-                                    '</td>' +
-                                    '</tr>';
-                            }
-                            $('tbody').html(query);
-                        },
-                        error: function() {
-                            alert('tidak bisa mengambil data dari database');
-                        }
+                function showData() {
+                    var t = $('#example1').DataTable({
+                        'paging': true,
+                        'lengthChange': false,
+                        'searching': true,
+                        'info': true,
+                        'autoWidth': false,
+                        "ajax": "<?= base_url('anggota/data'); ?>",
+                        "order": [
+                            [2, 'asc']
+                        ],
+                        "scrollX": true,
+                        "columns": [{
+                                "data": null,
+                                "width": '30px',
+                                "sClass": 'text-center',
+                                "orderable": false,
+                            },
+                            {
+                                "data": 'no_identitas',
+                                "width": '120px',
+                                "sClass": 'text-center'
+                            },
+                            {
+                                "data": 'nama',
+                                "width": '100px'
+                            },
+                            {
+                                "data": 'tgl_lahir',
+                                "sClass": 'text-center',
+                                "width": '130px'
+                            },
+                            {
+                                "data": 'jenis_kelamin',
+                                "width": '130px'
+                            },
+                            {
+                                "data": 'alamat',
+                                "width": '50px'
+                            },
+                            {
+                                "data": 'hp',
+                                "width": '75px'
+                            },
+                            {
+                                "data": 'tanggal_pembuatan',
+                                "width": '75px'
+                            },
+                            {
+                                "data": 'aksi',
+                                "width": '50px'
+                            },
+                        ]
                     });
-                } // end of showdataall
+                    t.on('order.dt search.dt', function() {
+                        t.column(0, {
+                            search: 'applied',
+                            order: 'applied'
+                        }).nodes().each(function(cell, i) {
+                            cell.innerHTML = i + 1;
+                        });
+                    }).draw();
+                    $.fn.dataTable.ext.errMode = 'throw';
+                }
                 //tambah data dengan ajax
                 let cek = '';
 
@@ -185,7 +231,7 @@
                     $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Anggota');
-                    $('#form-tambah').attr('action', '<?= base_url('anggota/tambahAnggota'); ?>');
+                    $('#form-tambah').attr('action', "<?= base_url('anggota/tambahAnggota'); ?>");
                 });
                 $('#btnSave').click(function() {
                     let url = $('#form-tambah').attr('action');
