@@ -30,6 +30,21 @@ class Anggota extends CI_Controller
         }
         echo json_encode($msg);
     }
+    public function getAnggota()
+    {
+        $result = $this->anggota_model->getAnggota();
+        echo json_encode($result);
+    }
+    public function updateAnggota()
+    {
+        $result = $this->anggota_model->updateAnggota();
+        $msg['success'] = false;
+        $msg['type'] = 'update';
+        if ($result) {
+            $msg['success'] = true;
+        }
+        echo json_encode($msg);
+    }
 
     function data()
     {
@@ -51,8 +66,8 @@ class Anggota extends CI_Controller
                 'db' => 'id_anggota',
                 'dt' => 'aksi',
                 'formatter' => function ($d) { // var $d itu untuk ke primary key yaitu nip 
-                    return anchor('akun/edit/' . $d, '<i class="fa fa-edit"></i>', array('class' => 'btn bg-navy btn-xs', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'ubah')) . '  ' .
-                        anchor('akun/delete/' . $d, '<i class="fa fa-trash"></i>', array('class' => 'btn btn-danger btn-xs', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', 'title' => 'hapus', 'onclick' => 'return test()'));
+                    return '<a href="javascript:;" class="btn bg-navy btn-xs item-edit" data="' . $d . '" data-toggle="tooltip" data-placement="bottom" title="ubah"> <i class="fa fa-edit"></i> </a>' . ' ' .
+                        '<a href="javascript:;" class="btn btn-danger btn-xs item-delete" data="' . $d . '" data-toggle="tooltip" data-placement="bottom" title="hapus"> <i class="fa fa-trash"></i> </a>';
                 },
             )
         );

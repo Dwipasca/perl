@@ -55,5 +55,34 @@ class Anggota_model extends CI_Model
             return false;
         }
     }
-    
+    function getAnggota()
+    {
+        $id = $this->input->get('id_anggota');
+        $this->db->where('id_anggota', $id);
+        $query = $this->db->get('anggota');
+        if ($query->num_rows() > 0) {
+            return $query->row();
+        } else {
+            return 'tidak ada data dari model ke database';
+        }
+    }
+    function updateAnggota()
+    {
+        $id = $this->input->post('txtId');
+        $field = array(
+            'no_identitas' => $this->input->post('no_inden'),
+            'nama' => $this->input->post('nama'),
+            'tgl_lahir' => $this->input->post('tgl'),
+            'jenis_kelamin' => $this->input->post('jk'),
+            'hp' => $this->input->post('no'),
+            'alamat' => $this->input->post('alamat'),
+        );
+        $this->db->where('id_anggota', $id);
+        $this->db->update('anggota', $field);
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

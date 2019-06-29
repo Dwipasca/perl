@@ -23,11 +23,12 @@
             <div class="box-body">
                 <div class="alert alert-success" style="display: none;"></div>
                 <button id="btnAdd" class="btn bg-maroon margin">Tambah Anggota</button>
+
                 <!-- /.box-header -->
                 <div class="box">
-                    <div class="box-header">
+                    <!-- <div class="box-header">
                         <h3 class="box-title">Data Table With Full Features</h3>
-                    </div>
+                    </div> -->
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
@@ -44,17 +45,22 @@
                                                 <th class="sorting" style="width: 134.8px;">Alamat</th>
                                                 <th class="sorting" style="width: 134.8px;">No. Hp</th>
                                                 <th class="sorting" style="width: 134.8px;">Tanggal Bergabung</th>
+                                                <th class="sorting" style="width: 134.8px;">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th rowspan="1" colspan="1">Rendering engine</th>
-                                                <th rowspan="1" colspan="1">Browser</th>
-                                                <th rowspan="1" colspan="1">Platform(s)</th>
-                                                <th rowspan="1" colspan="1">Engine version</th>
-                                                <th rowspan="1" colspan="1">CSS grade</th>
+                                                <th class="sorting_asc" style="width: 217.8px;">No</th>
+                                                <th class="sorting" style="width: 266.6px;">No. Identitas</th>
+                                                <th class="sorting" style="width: 237px;">Nama</th>
+                                                <th class="sorting" style="width: 187.4px;">Tanggal Lahir</th>
+                                                <th class="sorting" style="width: 134.8px;">Jenis Kelamin</th>
+                                                <th class="sorting" style="width: 134.8px;">Alamat</th>
+                                                <th class="sorting" style="width: 134.8px;">No. Hp</th>
+                                                <th class="sorting" style="width: 134.8px;">Tanggal Bergabung</th>
+                                                <th class="sorting" style="width: 134.8px;">Aksi</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -267,8 +273,8 @@
                                     } else if (response.type == 'update') {
                                         type = 'diubah';
                                     }
-                                    $('.alert-success').html('Anggota telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
-                                    showAllData();
+                                    $('.alert-success').html('Data Anggota telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
+                                    showData();
                                 } else {
                                     alert('gagal memasukkan data');
                                 }
@@ -282,30 +288,35 @@
                     }
                 }); // end of add lokasi
 
-                // //ubah
-                // $('tbody').on('click', '.item-edit', function() {
-                //     let id_lokasi = $(this).attr('data');
-                //     $('#modal-default').modal('show');
-                //     $('#modal-default').find('.modal-title').text('Ubah Lokasi');
-                //     $('#form-tambah').attr('action', '<?= base_url('lokasi/updateLokasi'); ?>');
-                //     $.ajax({
-                //         type: 'ajax',
-                //         method: 'get',
-                //         url: '<?= base_url('lokasi/getLokasi'); ?>',
-                //         data: {
-                //             id_lokasi: id_lokasi
-                //         },
-                //         dataType: 'json',
-                //         success: function(data) {
-                //             $('input[name=lokasi]').val(data.lokasi);
-                //             $('input[name=txtId]').val(data.id_lokasi);
-                //         },
-                //         error: function() {
-                //             alert('tidak bisa melakukan ubah lokasi');
-                //         }
-                //     });
-                // }); //akhir dari ubah
-                // //Delete
+                //ubah
+                $('tbody').on('click', '.item-edit', function() {
+                    let id_anggota = $(this).attr('data');
+                    $('#modal-default').modal('show');
+                    $('#modal-default').find('.modal-title').text('Ubah Lokasi');
+                    $('#form-tambah').attr('action', "<?= base_url('anggota/updateAnggota'); ?>");
+                    $.ajax({
+                        type: 'ajax',
+                        method: 'get',
+                        url: "<?= base_url('anggota/getAnggota'); ?>",
+                        data: {
+                            id_anggota: id_anggota
+                        },
+                        dataType: 'json',
+                        success: function(data) {
+                            $('input[name=txtId]').val(data.id_anggota);
+                            $('input[name=no_inden]').val(data.no_identitas);
+                            $('input[name=nama]').val(data.nama);
+                            $('input[name=tgl]').val(data.tgl_lahir);
+                            $('input[name=no]').val(data.hp);
+                            $('input[name=alamat]').val(data.alamat);
+                            $('input[name=jk]').val(data.jenis_kelamin);
+                        },
+                        error: function() {
+                            alert('tidak bisa melakukan ubah lokasi');
+                        }
+                    });
+                }); //akhir dari ubah
+                //Delete
                 // $('tbody').on('click', '.item-delete', function() {
                 //     let id_lokasi = $(this).attr('data');
                 //     $('#modal-danger').modal('show');
