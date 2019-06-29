@@ -85,4 +85,15 @@ class Anggota_model extends CI_Model
             return false;
         }
     }
+    function deleteAnggota()
+    {
+        $id = $this->input->get('id_anggota');
+        $this->db->where('id_anggota', $id);
+        $this->db->delete('anggota');
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

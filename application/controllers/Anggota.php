@@ -45,6 +45,15 @@ class Anggota extends CI_Controller
         }
         echo json_encode($msg);
     }
+    public function deleteAnggota()
+    {
+        $result = $this->anggota_model->deleteAnggota();
+        $msg['success'] = false;
+        if ($result) {
+            $msg['success'] = true;
+        }
+        echo json_encode($msg);
+    }
 
     function data()
     {

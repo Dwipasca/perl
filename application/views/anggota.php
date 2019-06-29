@@ -274,7 +274,8 @@
                                         type = 'diubah';
                                     }
                                     $('.alert-success').html('Data Anggota telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
-                                    showData();
+                                    // showData();
+                                    location.reload();
                                 } else {
                                     alert('gagal memasukkan data');
                                 }
@@ -317,33 +318,33 @@
                     });
                 }); //akhir dari ubah
                 //Delete
-                // $('tbody').on('click', '.item-delete', function() {
-                //     let id_lokasi = $(this).attr('data');
-                //     $('#modal-danger').modal('show');
-                //     $('#btnDelete').unbind().click(function() {
-                //         $.ajax({
-                //             type: 'ajax',
-                //             method: 'get',
-                //             url: '<?= base_url('lokasi/hapusLokasi') ?>',
-                //             data: {
-                //                 id_lokasi: id_lokasi
-                //             },
-                //             dataType: 'json',
-                //             success: function(response) {
-                //                 if (response.success) {
-                //                     $('#modal-danger').modal('hide');
-                //                     $('.alert-success').html('Lokasi telah berhasil dihapus').fadeIn().delay(4000).fadeOut('slow');
-                //                     showAllData();
-                //                 } else {
-                //                     alert('gagal menghapus Lokasi')
-                //                 }
-                //             },
-                //             error: function() {
-                //                 alert('Tidak bisa menghapus');
-                //             }
-                //         });
-                //     });
-                // });
+                $('tbody').on('click', '.item-delete', function() {
+                    let id_anggota = $(this).attr('data');
+                    $('#modal-danger').modal('show');
+                    $('#btnDelete').unbind().click(function() {
+                        $.ajax({
+                            type: 'ajax',
+                            method: 'get',
+                            url: "<?= base_url('anggota/deleteAnggota') ?>",
+                            data: {
+                                id_anggota: id_anggota
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.success) {
+                                    $('#modal-danger').modal('hide');
+                                    $('.alert-success').html('Lokasi telah berhasil dihapus').fadeIn().delay(4000).fadeOut('slow');
+                                    location.reload();
+                                } else {
+                                    alert('gagal menghapus Lokasi')
+                                }
+                            },
+                            error: function() {
+                                alert('Tidak bisa menghapus');
+                            }
+                        });
+                    });
+                });
 
             });
         }
