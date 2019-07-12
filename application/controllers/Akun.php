@@ -15,6 +15,39 @@ class Akun extends CI_Controller
         $this->load->view('akun');
         $this->load->view('template/footer');
     }
+    public function getAkun()
+    {
+        $result = $this->akun_model->getAkun();
+        echo json_encode($result);
+    }
+    public function updateAkun()
+    {
+        $result = $this->akun_model->updateAkun();
+        $msg['success'] = false;
+        $msg['type'] = 'update';
+        if ($result) {
+            $msg['success'] = true;
+        }
+        echo json_encode($msg);
+    }
+    public function updateAkunPassword()
+    {
+        $result = $this->akun_model->updateAkunPassword();
+        $msg['success'] = false;
+        if ($result) {
+            $msg['success'] = true;
+        }
+        echo json_encode($msg);
+    }
+    public function deleteAkun()
+    {
+        $result = $this->akun_model->deleteAkun();
+        $msg['success'] = false;
+        if ($result) {
+            $msg['success'] = true;
+        }
+        echo json_encode($msg);
+    }
     function data()
     {
         //nama tabel
@@ -27,11 +60,13 @@ class Akun extends CI_Controller
             array('db' => 'id_pengguna', 'dt' => 'id_pengguna'),
             array('db' => 'jabatan', 'dt' => 'jabatan'),
             array('db' => 'nama_pengguna', 'dt' => 'nama_pengguna'),
+            array('db' => 'kata_sandi', 'dt' => 'kata_sandi'),
             array(
                 'db' => 'id_akun',
                 'dt' => 'aksi',
                 'formatter' => function ($d) { // var $d itu untuk ke primary key yaitu nip 
                     return '<a href="javascript:;" class="btn bg-navy btn-xs item-edit" data="' . $d . '" data-toggle="tooltip" data-placement="bottom" title="ubah"> <i class="fa fa-edit"></i> </a>' . ' ' .
+                        '<a href="javascript:;" class="btn bg-primary btn-xs item-edit-password" data="' . $d . '" data-toggle="tooltip" data-placement="bottom" title="ubah password"> <i class="fa fa-user-secret"></i> </a>' . ' ' .
                         '<a href="javascript:;" class="btn btn-danger btn-xs item-delete" data="' . $d . '" data-toggle="tooltip" data-placement="bottom" title="hapus"> <i class="fa fa-trash"></i> </a>';
                 },
             )

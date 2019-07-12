@@ -6,6 +6,9 @@ class Kategori extends CI_Controller
     {
         parent::__construct();
         $this->load->model('kategori_model');
+        if ($this->session->userdata('level') != 'Pustakawan') {
+            redirect('auth');
+        }
     }
     public function index()
     {

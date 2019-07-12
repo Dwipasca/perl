@@ -1,11 +1,11 @@
 <?php
 
-class Anggota extends CI_Controller
+class Pustakawan extends CI_Controller
 {
     function __construct()
     {
         parent::__construct();
-        $this->load->model('anggota_model');
+        $this->load->model('pustakawan_model');
         $this->load->library('ssp');
         if ($this->session->userdata('level') != 'Pustakawan') {
             redirect('auth');
@@ -14,18 +14,17 @@ class Anggota extends CI_Controller
     public function index()
     {
         $this->load->view('template/header');
-        $this->load->view('anggota');
+        $this->load->view('pustakawan');
         $this->load->view('template/footer');
     }
-
-    function showAllDataAnggota()
+    function showAllDataPustakawan()
     {
-        $result = $this->anggota_model->getAllDataAnggota();
+        $result = $this->pustakawan_model->getAllDataPustakawan();
         echo json_encode($result);
     }
-    public function tambahAnggota()
+    public function tambahPustakawan()
     {
-        $result = $this->anggota_model->addAnggota();
+        $result = $this->pustakawan_model->addPustakawan();
         $msg['success'] = false;
         $msg['type'] = 'add';
         if ($result) {
@@ -33,14 +32,14 @@ class Anggota extends CI_Controller
         }
         echo json_encode($msg);
     }
-    public function getAnggota()
+    public function getPustakawan()
     {
-        $result = $this->anggota_model->getAnggota();
+        $result = $this->pustakawan_model->getPustakawan();
         echo json_encode($result);
     }
-    public function updateAnggota()
+    public function updatePustakawan()
     {
-        $result = $this->anggota_model->updateAnggota();
+        $result = $this->pustakawan_model->updatePustakawan();
         $msg['success'] = false;
         $msg['type'] = 'update';
         if ($result) {
@@ -48,9 +47,9 @@ class Anggota extends CI_Controller
         }
         echo json_encode($msg);
     }
-    public function deleteAnggota()
+    public function deletePustakawan()
     {
-        $result = $this->anggota_model->deleteAnggota();
+        $result = $this->pustakawan_model->deletePustakawan();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;
@@ -61,12 +60,12 @@ class Anggota extends CI_Controller
     function data()
     {
         //nama tabel
-        $table = 'anggota';
+        $table = 'pustakawan';
         //primary keynya
-        $primaryKey = 'id_anggota';
+        $primaryKey = 'id_pustakawan';
         //list field yg akan ditampilkan
         $columns = array(
-            array('db' => 'id_anggota', 'dt' => 'id_anggota'),
+            array('db' => 'id_pustakawan', 'dt' => 'id_pustakawan'),
             array('db' => 'no_identitas', 'dt' => 'no_identitas'),
             array('db' => 'nama', 'dt' => 'nama'),
             array('db' => 'tgl_lahir', 'dt' => 'tgl_lahir'),
@@ -75,7 +74,7 @@ class Anggota extends CI_Controller
             array('db' => 'hp', 'dt' => 'hp'),
             array('db' => 'tanggal_pembuatan', 'dt' => 'tanggal_pembuatan'),
             array(
-                'db' => 'id_anggota',
+                'db' => 'id_pustakawan',
                 'dt' => 'aksi',
                 'formatter' => function ($d) { // var $d itu untuk ke primary key yaitu nip 
                     return '<a href="javascript:;" class="btn bg-navy btn-xs item-edit" data="' . $d . '" data-toggle="tooltip" data-placement="bottom" title="ubah"> <i class="fa fa-edit"></i> </a>' . ' ' .

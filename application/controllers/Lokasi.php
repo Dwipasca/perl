@@ -6,6 +6,9 @@ class Lokasi extends CI_Controller
     {
         parent::__construct();
         $this->load->model('lokasi_model');
+        if ($this->session->userdata('level') != 'Pustakawan') {
+            redirect('auth');
+        }
     }
 
     public function index()

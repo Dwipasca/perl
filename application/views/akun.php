@@ -20,20 +20,21 @@
                         <i class="fa fa-times"></i></button>
                 </div>
             </div>
+            <div class="alert alert-success" style="display: none;"></div>
             <div class="box-body">
-                <div class="alert alert-success" style="display: none;"></div>
                 <!-- /.box-header -->
 
                 <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                            <table id="example1" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example1_info">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" style="width: 217.8px;">No</th>
                                         <th class="sorting" style="width: 266.6px;">Id. Pengguna</th>
                                         <th class="sorting" style="width: 237px;">Jabatan</th>
                                         <th class="sorting" style="width: 187.4px;">Nama Pengguna</th>
+                                        <th class="sorting" style="width: 187.4px;">Kata Sandi</th>
                                         <th class="sorting" style="width: 134.8px;">Aksi</th>
                                     </tr>
                                 </thead>
@@ -45,6 +46,7 @@
                                         <th class="sorting" style="width: 266.6px;">Id. Pengguna</th>
                                         <th class="sorting" style="width: 237px;">Jabatan</th>
                                         <th class="sorting" style="width: 187.4px;">Nama Pengguna</th>
+                                        <th class="sorting" style="width: 187.4px;">Kata Sandi</th>
                                         <th class="sorting" style="width: 134.8px;">Aksi</th>
                                     </tr>
                                 </tfoot>
@@ -69,37 +71,22 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Tambah Anggota</h4>
+                    <h4 class="modal-title">Tambah Akun</h4>
                 </div>
                 <div class="modal-body">
                     <form id="form-tambah" action="" method="post">
                         <div class="form-group">
                             <input type="hidden" name="txtId" id="txtId" value="0">
-                            <label for="exampleInputEmail1">No. Identitas</label>
-                            <input type="text" class="form-control" id="no-inden" name="no_inden" placeholder="Masukkan No. Identitas" autocomplete="off">
+                            <label for="exampleInputEmail1">Id Pengguna</label>
+                            <input type="text" class="form-control" id="id_pengguna" name="id_pengguna" autocomplete="off" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="tgl" name="tgl" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">No. Hp</label>
-                            <input type="text" class="form-control" id="no" name="no" placeholder="Masukkan No. Hp" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" autocomplete="off">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Jenis Kelamin</label>
-                            <select name="jk" id="jk" class="form-control">
-                                <option value="Perempuan">Perempuan</option>
-                                <option value="Laki-laki">Laki-laki</option>
+                            <label for="exampleInputEmail1">Jabatan</label>
+                            <select name="jabatan" id="jabatan" class="form-control">
+                                <option value="Anggota">Anggota</option>
+                                <option value="Pustakawan">Pustakawan</option>
                             </select>
+                            <!-- <input type="text" class="form-control" id="jabatan" name="jabatan" autocomplete="off"> -->
                         </div>
                     </form>
                 </div>
@@ -111,6 +98,39 @@
         </div>
     </div>
     <!-- tutup modal tambah Lokasi -->
+    <!-- modal edit password-->
+    <div class="modal fade" id="modal-password" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Tambah Akun</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="form-password" action="" method="post">
+                        <div class="form-group">
+                            <input type="hidden" name="txtId" id="txtId" value="0">
+                            <label for="exampleInputEmail1">Kata Sandi Baru</label>
+                            <input type="password" class="form-control" id="kata_sandi" name="kata_sandi" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" name="txtId" id="txtId" value="0">
+                            <label for="exampleInputEmail1">Ulang Kata Sandi Baru</label>
+                            <input type="password" class="form-control" id="re_kata_sandi" name="re_kata_sandi" autocomplete="off">
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnSavePassword">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- tutup modal tambah Lokasi -->
+
 
     <!-- modal delete -->
     <div class="modal modal-danger fade in" id="modal-danger" style="display: none;">
@@ -166,10 +186,16 @@
                             },
                             {
                                 "data": 'jabatan',
+                                "sClass": 'text-center',
                                 "width": '100px'
                             },
                             {
                                 "data": 'nama_pengguna',
+                                "sClass": 'text-center',
+                                "width": '130px'
+                            },
+                            {
+                                "data": 'kata_sandi',
                                 "sClass": 'text-center',
                                 "width": '130px'
                             },
@@ -211,21 +237,14 @@
                     let url = $('#form-tambah').attr('action');
                     let data = $('#form-tambah').serialize();
                     //validate form'
-                    let no_identitas = $('input[name=no_inden]');
-                    let nama = $('input[name=nama]');
-                    let tgl = $('input[name=tgl]');
-                    let no = $('input[name=no]');
-                    let alamat = $('input[name=alamat]');
-                    let jk = $('input[name=jk]');
-                    validation(no_identitas);
-                    validation(nama);
-                    validation(tgl);
-                    validation(no);
-                    validation(alamat);
+                    let id_pengguna = $('input[name=id_pengguna]');
+                    let jabatan = $('select[name=jabatan]');
+                    validation(id_pengguna);
+                    validation(jabatan);
 
                     let type = '';
                     //mengecek apakah semua sudah terisi atau belum
-                    if (cek === '11111') {
+                    if (cek === '11') {
                         $.ajax({
                             type: 'ajax',
                             method: 'post',
@@ -241,9 +260,9 @@
                                     } else if (response.type == 'update') {
                                         type = 'diubah';
                                     }
+                                    // location.reload();
                                     $('.alert-success').html('Data Anggota telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
                                     // showData();
-                                    location.reload();
                                 } else {
                                     alert('gagal memasukkan data');
                                 }
@@ -256,46 +275,102 @@
                         alert('Ada field yang kosong');
                     }
                 }); // end of add lokasi
-
                 //ubah
                 $('tbody').on('click', '.item-edit', function() {
-                    let id_anggota = $(this).attr('data');
+                    let id_akun = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Lokasi');
-                    $('#form-tambah').attr('action', "<?= base_url('anggota/updateAnggota'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('akun/updateAkun'); ?>");
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('anggota/getAnggota'); ?>",
+                        url: "<?= base_url('akun/getAkun'); ?>",
                         data: {
-                            id_anggota: id_anggota
+                            id_akun: id_akun
                         },
                         dataType: 'json',
                         success: function(data) {
-                            $('input[name=txtId]').val(data.id_anggota);
-                            $('input[name=no_inden]').val(data.no_identitas);
-                            $('input[name=nama]').val(data.nama);
-                            $('input[name=tgl]').val(data.tgl_lahir);
-                            $('input[name=no]').val(data.hp);
-                            $('input[name=alamat]').val(data.alamat);
-                            $('input[name=jk]').val(data.jenis_kelamin);
+                            $('input[name=txtId]').val(data.id_akun);
+                            $('input[name=id_pengguna]').val(data.id_pengguna);
+                            $('select[name=jabatan]').val(data.jabatan);
                         },
                         error: function() {
                             alert('tidak bisa melakukan ubah lokasi');
                         }
                     });
                 }); //akhir dari ubah
+                //ubah password
+                $('tbody').on('click', '.item-edit-password', function() {
+                    $('#form-password')[0].reset();
+                    let id_akun = $(this).attr('data');
+                    $('input[name=txtId]').val(id_akun);
+                    $('#modal-password').modal('show');
+                    $('#modal-password').find('.modal-title').text('Ubah Password');
+                    $('#form-password').attr('action', "<?= base_url('akun/updateAkunPassword'); ?>");
+                }); //akhir dari ubah password
+                $('#btnSavePassword').click(function() {
+                    let cek2 = '';
+                    let url = $('#form-password').attr('action');
+                    let data = $('#form-password').serialize();
+                    //validate form'
+                    let kata_sandi = $('#kata_sandi').val();
+                    let re_kata_sandi = $('#re_kata_sandi').val();
+                    // alert(kata_sandi);
+                    // alert(re_kata_sandi);
+                    if (kata_sandi == '') {
+                        $('#kata_sandi').parent().addClass('has-error');
+                    } else {
+                        $('#kata_sandi').parent().removeClass('has-error');
+                        cek2 += '1';
+                    }
+                    if (re_kata_sandi == '') {
+                        $('#re_kata_sandi').parent().addClass('has-error');
+                    } else {
+                        $('#re_kata_sandi').parent().removeClass('has-error');
+                        cek2 += '1';
+                    }
+                    //mengecek apakah semua sudah terisi atau belum
+                    if (cek2 == '11') {
+                        if (kata_sandi != re_kata_sandi) {
+                            alert('Kolom ulang kata sandi tidak sesuai dengan kata sandi diatas');
+                        } else {
+                            $.ajax({
+                                type: 'ajax',
+                                method: 'post',
+                                url: "<?= base_url('akun/updateAkunPassword'); ?>",
+                                data: data,
+                                dataType: 'json',
+                                success: function(response) {
+                                    if (response.success) {
+                                        $('#modal-password').modal('hide');
+                                        $('#form-password')[0].reset();
+                                        // location.reload();
+                                        $('.alert-success').html('Data Anggota telah berhasil diubah').fadeIn().delay(4000).fadeOut('slow');
+                                        // showData();
+                                    } else {
+                                        alert('gagal memasukkan data');
+                                    }
+                                },
+                                error: function() {
+                                    alert('tidak bisa menambahkan data');
+                                }
+                            });
+                        }
+                    } else {
+                        alert('Ada field yang kosong');
+                    }
+                }); // end of tombol simpan ubah password
                 //Delete
                 $('tbody').on('click', '.item-delete', function() {
-                    let id_anggota = $(this).attr('data');
+                    let id_akun = $(this).attr('data');
                     $('#modal-danger').modal('show');
                     $('#btnDelete').unbind().click(function() {
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: "<?= base_url('anggota/deleteAnggota') ?>",
+                            url: "<?= base_url('akun/deleteAkun') ?>",
                             data: {
-                                id_anggota: id_anggota
+                                id_akun: id_akun
                             },
                             dataType: 'json',
                             success: function(response) {

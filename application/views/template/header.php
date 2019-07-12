@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/AdminLTE.min.css">
+    <!-- select 2  -->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/select2/dist/css/select2.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/skins/_all-skins.min.css">
@@ -27,12 +29,35 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style type="text/css">
+        .select2-container--default .select2-selection--single {
+            height: 35px !important;
+            padding: 10px 4px;
+            font-size: 14px;
+            line-height: 1;
+            border-radius: -2px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow b {
+            top: 85% !important;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 26px !important;
+        }
+
+        .select2-container--default .select2-selection--single {
+            border: 1px solid #CCC !important;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+            transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+        }
+    </style>
+
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
     <!-- Site wrapper -->
     <div class="wrapper">
 
@@ -56,8 +81,6 @@
             </nav>
         </header>
 
-        <!-- =============================================== -->
-
         <!-- Left side column. contains the sidebar -->
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
@@ -76,24 +99,49 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active">
-                        <a href="../mailbox/mailbox.html">
-                            <i class="fa fa-dashboard"></i> <span>Kategori</span>
+                    <li class="li-link">
+                        <a href="<?= base_url('akun'); ?>">
+                            <i class="fa fa-folder"></i> <span>Akun</span>
+                        </a>
+                    </li>
+                    <li class="li-link">
+                        <a href="<?= base_url('anggota'); ?>">
+                            <i class="fa fa-folder"></i> <span>Anggota</span>
+                        </a>
+                    </li>
+                    <li class="li-link">
+                        <a href="<?= base_url('katalog_buku'); ?>">
+                            <i class="fa fa-folder"></i> <span>Katalog Buku</span>
+                        </a>
+                    </li>
+                    <li class="li-link">
+                        <a href="<?= base_url('kategori'); ?>">
+                            <i class="fa fa-folder"></i> <span>Kategori</span>
+                        </a>
+                    </li>
+                    <li class="li-link">
+                        <a href="<?= base_url('lokasi'); ?>">
+                            <i class="fa fa-folder"></i> <span>Lokasi</span>
+                        </a>
+                    </li>
+                    <li class="li-link">
+                        <a href="<?= base_url('pustakawan'); ?>">
+                            <i class="fa fa-folder"></i> <span>Pustakawan</span>
+                        </a>
+                    </li>
+                    <li class="li-link">
+                        <a href="<?= base_url('peminjaman'); ?>">
+                            <i class="fa fa-folder"></i> <span>Peminjaman</span>
+                        </a>
+                    </li>
+                    <li class="li-link">
+                        <a href="<?= base_url('pengunjung/akses'); ?>">
+                            <i class="fa fa-folder"></i> <span>Pengunjung</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../mailbox/mailbox.html">
-                            <i class="fa fa-dashboard"></i> <span>Lokasi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../mailbox/mailbox.html">
-                            <i class="fa fa-dashboard"></i> <span>Anggota</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../mailbox/mailbox.html">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                        <a href="<?= base_url('auth/logout'); ?>">
+                            <i class="fa fa-sign-out"></i> <span>Keluar</span>
                         </a>
                     </li>
                 </ul>

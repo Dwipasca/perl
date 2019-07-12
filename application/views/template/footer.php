@@ -23,23 +23,18 @@
 <script src="<?= base_url(); ?>assets/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>assets/js/demo.js"></script>
+<!-- Select2 -->
+<script src="<?= base_url(); ?>assets/bower_components/select2/dist/js/select2.full.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.sidebar-menu').tree()
+        $('.sidebar-menu').tree();
+        $('.li-link').on('click', function() {
+            $('.li-link').removeClass('active');
+            $(this).addClass('active');
+        });
     })
 </script>
-<!-- <script>
-    $(function() {
-        $('#example1').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': true,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false
-        })
-    })
-</script> -->
+
 </body>
 
 </html>
