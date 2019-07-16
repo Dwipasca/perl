@@ -55,6 +55,7 @@
         }
     </style>
 
+
 </head>
 
 <body class="hold-transition skin-red sidebar-mini">
@@ -88,10 +89,10 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="<?= base_url(); ?>assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="<?= base_url(); ?>assets/img/user2-160x160.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p><?= $this->session->userdata('username'); ?></p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -100,47 +101,47 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="li-link">
-                        <a href="<?= base_url('akun'); ?>">
+                        <a href="<?= base_url('Akun'); ?>">
                             <i class="fa fa-folder"></i> <span>Akun</span>
                         </a>
                     </li>
                     <li class="li-link">
-                        <a href="<?= base_url('anggota'); ?>">
+                        <a href="<?= base_url('Anggota'); ?>">
                             <i class="fa fa-folder"></i> <span>Anggota</span>
                         </a>
                     </li>
                     <li class="li-link">
-                        <a href="<?= base_url('katalog_buku'); ?>">
+                        <a href="<?= base_url('Katalog_Buku'); ?>">
                             <i class="fa fa-folder"></i> <span>Katalog Buku</span>
                         </a>
                     </li>
                     <li class="li-link">
-                        <a href="<?= base_url('kategori'); ?>">
+                        <a href="<?= base_url('Kategori'); ?>">
                             <i class="fa fa-folder"></i> <span>Kategori</span>
                         </a>
                     </li>
                     <li class="li-link">
-                        <a href="<?= base_url('lokasi'); ?>">
+                        <a href="<?= base_url('Lokasi'); ?>">
                             <i class="fa fa-folder"></i> <span>Lokasi</span>
                         </a>
                     </li>
                     <li class="li-link">
-                        <a href="<?= base_url('pustakawan'); ?>">
+                        <a href="<?= base_url('Pustakawan'); ?>">
                             <i class="fa fa-folder"></i> <span>Pustakawan</span>
                         </a>
                     </li>
                     <li class="li-link">
-                        <a href="<?= base_url('peminjaman'); ?>">
+                        <a href="<?= base_url('Peminjaman'); ?>">
                             <i class="fa fa-folder"></i> <span>Peminjaman</span>
                         </a>
                     </li>
                     <li class="li-link">
-                        <a href="<?= base_url('pengunjung/akses'); ?>">
+                        <a href="<?= base_url('Pengunjung/akses'); ?>">
                             <i class="fa fa-folder"></i> <span>Pengunjung</span>
                         </a>
                     </li>
                     <li>
-                        <a href="<?= base_url('auth/logout'); ?>">
+                        <a href="<?= base_url('Auth/logout'); ?>">
                             <i class="fa fa-sign-out"></i> <span>Keluar</span>
                         </a>
                     </li>

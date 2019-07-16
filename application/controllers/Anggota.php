@@ -5,8 +5,8 @@ class Anggota extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('anggota_model');
-        $this->load->library('ssp');
+        $this->load->model('Anggota_model');
+        $this->load->library('SSP');
         if ($this->session->userdata('level') != 'Pustakawan') {
             redirect('auth');
         }
@@ -20,12 +20,12 @@ class Anggota extends CI_Controller
 
     function showAllDataAnggota()
     {
-        $result = $this->anggota_model->getAllDataAnggota();
+        $result = $this->Anggota_model->getAllDataAnggota();
         echo json_encode($result);
     }
     public function tambahAnggota()
     {
-        $result = $this->anggota_model->addAnggota();
+        $result = $this->Anggota_model->addAnggota();
         $msg['success'] = false;
         $msg['type'] = 'add';
         if ($result) {
@@ -35,12 +35,12 @@ class Anggota extends CI_Controller
     }
     public function getAnggota()
     {
-        $result = $this->anggota_model->getAnggota();
+        $result = $this->Anggota_model->getAnggota();
         echo json_encode($result);
     }
     public function updateAnggota()
     {
-        $result = $this->anggota_model->updateAnggota();
+        $result = $this->Anggota_model->updateAnggota();
         $msg['success'] = false;
         $msg['type'] = 'update';
         if ($result) {
@@ -50,7 +50,7 @@ class Anggota extends CI_Controller
     }
     public function deleteAnggota()
     {
-        $result = $this->anggota_model->deleteAnggota();
+        $result = $this->Anggota_model->deleteAnggota();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;

@@ -164,7 +164,7 @@
                         'searching': true,
                         'info': true,
                         'autoWidth': false,
-                        "ajax": "<?= base_url('anggota/data'); ?>",
+                        "ajax": "<?= base_url('Anggota/data'); ?>",
                         "order": [
                             [2, 'asc']
                         ],
@@ -237,7 +237,7 @@
                     $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Anggota');
-                    $('#form-tambah').attr('action', "<?= base_url('anggota/tambahAnggota'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Anggota/tambahAnggota'); ?>");
                 });
                 $('#btnSave').click(function() {
                     let url = $('#form-tambah').attr('action');
@@ -294,11 +294,11 @@
                     let id_anggota = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Lokasi');
-                    $('#form-tambah').attr('action', "<?= base_url('anggota/updateAnggota'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Anggota/updateAnggota'); ?>");
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('anggota/getAnggota'); ?>",
+                        url: "<?= base_url('Anggota/getAnggota'); ?>",
                         data: {
                             id_anggota: id_anggota
                         },
@@ -325,7 +325,7 @@
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: "<?= base_url('anggota/deleteAnggota') ?>",
+                            url: "<?= base_url('Anggota/deleteAnggota') ?>",
                             data: {
                                 id_anggota: id_anggota
                             },

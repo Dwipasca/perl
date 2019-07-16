@@ -168,7 +168,7 @@
                         'searching': true,
                         'info': true,
                         'autoWidth': false,
-                        "ajax": "<?= base_url('akun/data'); ?>",
+                        "ajax": "<?= base_url('Akun/data'); ?>",
                         "order": [
                             [2, 'asc']
                         ],
@@ -231,7 +231,7 @@
                     $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Anggota');
-                    $('#form-tambah').attr('action', "<?= base_url('anggota/tambahAnggota'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Anggota/tambahAnggota'); ?>");
                 });
                 $('#btnSave').click(function() {
                     let url = $('#form-tambah').attr('action');
@@ -260,8 +260,8 @@
                                     } else if (response.type == 'update') {
                                         type = 'diubah';
                                     }
-                                    // location.reload();
-                                    $('.alert-success').html('Data Anggota telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
+                                    $('.alert-success').html('Data Akun telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
+                                    location.reload();
                                     // showData();
                                 } else {
                                     alert('gagal memasukkan data');
@@ -280,11 +280,11 @@
                     let id_akun = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Lokasi');
-                    $('#form-tambah').attr('action', "<?= base_url('akun/updateAkun'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Akun/updateAkun'); ?>");
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('akun/getAkun'); ?>",
+                        url: "<?= base_url('Akun/getAkun'); ?>",
                         data: {
                             id_akun: id_akun
                         },
@@ -306,7 +306,7 @@
                     $('input[name=txtId]').val(id_akun);
                     $('#modal-password').modal('show');
                     $('#modal-password').find('.modal-title').text('Ubah Password');
-                    $('#form-password').attr('action', "<?= base_url('akun/updateAkunPassword'); ?>");
+                    $('#form-password').attr('action', "<?= base_url('Akun/updateAkunPassword'); ?>");
                 }); //akhir dari ubah password
                 $('#btnSavePassword').click(function() {
                     let cek2 = '';
@@ -315,8 +315,6 @@
                     //validate form'
                     let kata_sandi = $('#kata_sandi').val();
                     let re_kata_sandi = $('#re_kata_sandi').val();
-                    // alert(kata_sandi);
-                    // alert(re_kata_sandi);
                     if (kata_sandi == '') {
                         $('#kata_sandi').parent().addClass('has-error');
                     } else {
@@ -337,15 +335,15 @@
                             $.ajax({
                                 type: 'ajax',
                                 method: 'post',
-                                url: "<?= base_url('akun/updateAkunPassword'); ?>",
+                                url: "<?= base_url('Akun/updateAkunPassword'); ?>",
                                 data: data,
                                 dataType: 'json',
                                 success: function(response) {
                                     if (response.success) {
                                         $('#modal-password').modal('hide');
                                         $('#form-password')[0].reset();
-                                        // location.reload();
                                         $('.alert-success').html('Data Anggota telah berhasil diubah').fadeIn().delay(4000).fadeOut('slow');
+                                        location.reload();
                                         // showData();
                                     } else {
                                         alert('gagal memasukkan data');
@@ -368,7 +366,7 @@
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: "<?= base_url('akun/deleteAkun') ?>",
+                            url: "<?= base_url('Akun/deleteAkun') ?>",
                             data: {
                                 id_akun: id_akun
                             },

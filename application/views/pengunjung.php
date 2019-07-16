@@ -79,7 +79,7 @@
                         data: {
                             'jenis': pencarian
                         },
-                        url: '<?= base_url('pengunjung/AXfilterPencarian/') ?>' + pencarian,
+                        url: '<?= base_url('Pengunjung/AXfilterPencarian/') ?>' + pencarian,
                         dataType: 'json',
                         success: function(data) {
                             let query = '';
@@ -108,7 +108,7 @@
                 function showAllData() {
                     $.ajax({
                         type: 'ajax',
-                        url: '<?= base_url('pengunjung/AXshowAllData/') ?>',
+                        url: '<?= base_url('Pengunjung/AXshowAllData/') ?>',
                         dataType: 'json',
                         success: function(data) {
                             let query = '';
@@ -139,7 +139,7 @@
                         data: {
                             'jenis': pencarian
                         },
-                        url: '<?= base_url('pengunjung/AXfilterPencarian/') ?>' + pencarian,
+                        url: '<?= base_url('Pengunjung/AXfilterPencarian/') ?>' + pencarian,
                         dataType: 'json',
                         success: function(data) {
                             let query = '';
@@ -174,7 +174,7 @@
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('pengunjung/getDataDetail'); ?>",
+                        url: "<?= base_url('Pengunjung/getDataDetail'); ?>",
                         data: {
                             id: id
                         },

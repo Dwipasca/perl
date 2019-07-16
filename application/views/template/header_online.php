@@ -169,7 +169,7 @@
                                 </li>
                             <?php endforeach; ?>
                             <?php if ($this->session->userdata('level') == 'Anggota') :  ?>
-                                <li><a href="<?= base_url('auth/logout'); ?>"><i class="fa fa-sign-out"></i></a></li>
+                                <li><a href="<?= base_url('Auth/logout'); ?>"><i class="fa fa-sign-out"></i></a></li>
                             <?php endif; ?>
                         </ul>
                     </div>

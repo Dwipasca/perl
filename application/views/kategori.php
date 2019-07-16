@@ -122,7 +122,7 @@
                 function showAllData() {
                     $.ajax({
                         type: 'ajax',
-                        url: '<?= base_url('kategori/showAllDataKategori') ?>',
+                        url: '<?= base_url('Kategori/showAllDataKategori') ?>',
                         dataType: 'json',
                         success: function(data) {
                             let query = '';
@@ -150,7 +150,7 @@
                     $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Kategori');
-                    $('#form-tambah').attr('action', '<?= base_url('kategori/tambahKategori'); ?>');
+                    $('#form-tambah').attr('action', '<?= base_url('Kategori/tambahKategori'); ?>');
                 });
                 $('#btnSave').click(function() {
                     let url = $('#form-tambah').attr('action');
@@ -200,11 +200,11 @@
                     let id_kategori = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Kategori');
-                    $('#form-tambah').attr('action', '<?= base_url('kategori/updateKategori'); ?>');
+                    $('#form-tambah').attr('action', '<?= base_url('Kategori/updateKategori'); ?>');
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: '<?= base_url('kategori/ubahKategori'); ?>',
+                        url: '<?= base_url('Kategori/ubahKategori'); ?>',
                         data: {
                             id_kategori: id_kategori
                         },
@@ -226,7 +226,7 @@
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: '<?= base_url('kategori/hapusKategori') ?>',
+                            url: '<?= base_url('Kategori/hapusKategori') ?>',
                             data: {
                                 id_kategori: id_kategori
                             },

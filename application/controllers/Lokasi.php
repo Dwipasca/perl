@@ -5,7 +5,7 @@ class Lokasi extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('lokasi_model');
+        $this->load->model('Lokasi_model');
         if ($this->session->userdata('level') != 'Pustakawan') {
             redirect('auth');
         }
@@ -20,12 +20,12 @@ class Lokasi extends CI_Controller
 
     function showAllDataLokasi()
     {
-        $result = $this->lokasi_model->getDataLokasi();
+        $result = $this->Lokasi_model->getDataLokasi();
         echo json_encode($result);
     }
     public function tambahLokasi()
     {
-        $result = $this->lokasi_model->addLokasi();
+        $result = $this->Lokasi_model->addLokasi();
         $msg['success'] = false;
         $msg['type'] = 'add';
         if ($result) {
@@ -35,12 +35,12 @@ class Lokasi extends CI_Controller
     }
     public function getLokasi()
     {
-        $result = $this->lokasi_model->getLokasi();
+        $result = $this->Lokasi_model->getLokasi();
         echo json_encode($result);
     }
     public function updateLokasi()
     {
-        $result = $this->lokasi_model->updateLokasi();
+        $result = $this->Lokasi_model->updateLokasi();
         $msg['success'] = false;
         $msg['type'] = 'update';
         if ($result) {
@@ -50,7 +50,7 @@ class Lokasi extends CI_Controller
     }
     public function hapusLokasi()
     {
-        $result = $this->lokasi_model->deleteLokasi();
+        $result = $this->Lokasi_model->deleteLokasi();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;

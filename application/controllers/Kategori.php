@@ -5,7 +5,7 @@ class Kategori extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('kategori_model');
+        $this->load->model('Kategori_model');
         if ($this->session->userdata('level') != 'Pustakawan') {
             redirect('auth');
         }
@@ -18,12 +18,12 @@ class Kategori extends CI_Controller
     }
     function showAllDataKategori()
     {
-        $result = $this->kategori_model->getDataKategori();
+        $result = $this->Kategori_model->getDataKategori();
         echo json_encode($result);
     }
     public function tambahKategori()
     {
-        $result = $this->kategori_model->addKategori();
+        $result = $this->Kategori_model->addKategori();
         $msg['success'] = false;
         $msg['type'] = 'add';
         if ($result) {
@@ -33,12 +33,12 @@ class Kategori extends CI_Controller
     }
     public function ubahKategori()
     {
-        $result = $this->kategori_model->editKategori();
+        $result = $this->Kategori_model->editKategori();
         echo json_encode($result);
     }
     public function updateKategori()
     {
-        $result = $this->kategori_model->updateKategori();
+        $result = $this->Kategori_model->updateKategori();
         $msg['success'] = false;
         $msg['type'] = 'update';
         if ($result) {
@@ -49,7 +49,7 @@ class Kategori extends CI_Controller
 
     public function hapusKategori()
     {
-        $result = $this->kategori_model->deleteKategori();
+        $result = $this->Kategori_model->deleteKategori();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;

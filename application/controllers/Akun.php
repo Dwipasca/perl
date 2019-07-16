@@ -5,8 +5,8 @@ class Akun extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('akun_model');
-        $this->load->library('ssp');
+        $this->load->model('Akun_model');
+        $this->load->library('SSP');
     }
 
     function index()
@@ -17,12 +17,12 @@ class Akun extends CI_Controller
     }
     public function getAkun()
     {
-        $result = $this->akun_model->getAkun();
+        $result = $this->Akun_model->getAkun();
         echo json_encode($result);
     }
     public function updateAkun()
     {
-        $result = $this->akun_model->updateAkun();
+        $result = $this->Akun_model->updateAkun();
         $msg['success'] = false;
         $msg['type'] = 'update';
         if ($result) {
@@ -32,7 +32,7 @@ class Akun extends CI_Controller
     }
     public function updateAkunPassword()
     {
-        $result = $this->akun_model->updateAkunPassword();
+        $result = $this->Akun_model->updateAkunPassword();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;
@@ -41,7 +41,7 @@ class Akun extends CI_Controller
     }
     public function deleteAkun()
     {
-        $result = $this->akun_model->deleteAkun();
+        $result = $this->Akun_model->deleteAkun();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;

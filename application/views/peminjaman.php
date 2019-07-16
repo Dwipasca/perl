@@ -258,11 +258,11 @@
                 $('tbody').on('click', '#btnkembali', function() {
                     let id_peminjaman = $(this).attr('data');
                     $('#modal-pengembalian').modal('show');
-                    $('#form-pengembalian').attr('action', "<?= base_url('peminjaman/pengembalianPeminjaman'); ?>");
+                    $('#form-pengembalian').attr('action', "<?= base_url('Peminjaman/pengembalianPeminjaman'); ?>");
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('peminjaman/getPeminjaman'); ?>",
+                        url: "<?= base_url('Peminjaman/getPeminjaman'); ?>",
                         data: {
                             id_peminjaman: id_peminjaman
                         },
@@ -292,7 +292,7 @@
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: "<?= base_url('peminjaman/deletePeminjaman') ?>",
+                            url: "<?= base_url('Peminjaman/deletePeminjaman') ?>",
                             data: {
                                 id_peminjaman: id_peminjaman
                             },
@@ -300,8 +300,8 @@
                             success: function(response) {
                                 if (response.success) {
                                     $('#modal-danger').modal('hide');
-                                    // location.reload();
                                     $('.alert-success').html('Data Peminjaman buku telah berhasil dihapus').fadeIn().delay(4000).fadeOut('slow');
+                                    location.reload();
                                 } else {
                                     alert('gagal menghapus Lokasi')
                                 }

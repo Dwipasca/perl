@@ -188,11 +188,11 @@
                     let id_pustakawan = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Pustakawan');
-                    $('#form-tambah').attr('action', "<?= base_url('pustakawan/updatePustakawan'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Pustakawan/updatePustakawan'); ?>");
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('pustakawan/getPustakawan'); ?>",
+                        url: "<?= base_url('Pustakawan/getPustakawan'); ?>",
                         data: {
                             id_pustakawan: id_pustakawan
                         },
@@ -219,7 +219,7 @@
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: "<?= base_url('peminjaman/deletePeminjaman') ?>",
+                            url: "<?= base_url('Peminjaman/deletePeminjaman') ?>",
                             data: {
                                 id_peminjaman: id_peminjaman
                             },

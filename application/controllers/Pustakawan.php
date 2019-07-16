@@ -5,8 +5,8 @@ class Pustakawan extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('pustakawan_model');
-        $this->load->library('ssp');
+        $this->load->model('Pustakawan_model');
+        $this->load->library('SSP');
         if ($this->session->userdata('level') != 'Pustakawan') {
             redirect('auth');
         }
@@ -19,12 +19,12 @@ class Pustakawan extends CI_Controller
     }
     function showAllDataPustakawan()
     {
-        $result = $this->pustakawan_model->getAllDataPustakawan();
+        $result = $this->Pustakawan_model->getAllDataPustakawan();
         echo json_encode($result);
     }
     public function tambahPustakawan()
     {
-        $result = $this->pustakawan_model->addPustakawan();
+        $result = $this->Pustakawan_model->addPustakawan();
         $msg['success'] = false;
         $msg['type'] = 'add';
         if ($result) {
@@ -34,12 +34,12 @@ class Pustakawan extends CI_Controller
     }
     public function getPustakawan()
     {
-        $result = $this->pustakawan_model->getPustakawan();
+        $result = $this->Pustakawan_model->getPustakawan();
         echo json_encode($result);
     }
     public function updatePustakawan()
     {
-        $result = $this->pustakawan_model->updatePustakawan();
+        $result = $this->Pustakawan_model->updatePustakawan();
         $msg['success'] = false;
         $msg['type'] = 'update';
         if ($result) {
@@ -49,7 +49,7 @@ class Pustakawan extends CI_Controller
     }
     public function deletePustakawan()
     {
-        $result = $this->pustakawan_model->deletePustakawan();
+        $result = $this->Pustakawan_model->deletePustakawan();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;

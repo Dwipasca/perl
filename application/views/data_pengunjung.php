@@ -79,7 +79,7 @@
                         'searching': true,
                         'info': true,
                         'autoWidth': false,
-                        "ajax": "<?= base_url('pengunjung/data'); ?>",
+                        "ajax": "<?= base_url('Pengunjung/data'); ?>",
                         "order": [
                             [2, 'asc']
                         ],

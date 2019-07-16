@@ -77,7 +77,7 @@
                                                     <td> <a href="<?= $all['link_buku']; ?>" target="_blank" class="btn btn-primary btn-xs">Link</a></td>
                                                     <td><?= $all['status']; ?></td>
                                                     <td>
-                                                        <button data="<?= $all['id']; ?>" data-toggle="tooltip" data-placement="bottom" title="ubah" class="btn bg-navy btn-xs"><i class="fa fa-edit"></i></button>
+                                                        <!-- <button data="<?= $all['id']; ?>" data-toggle="tooltip" data-placement="bottom" title="ubah" class="btn bg-navy btn-xs"><i class="fa fa-edit"></i></button> -->
                                                         <button data="<?= $all['id']; ?>" data-toggle="tooltip" data-placement="bottom" title="hapus" class="btn btn-danger btn-xs item-delete"><i class="fa fa-trash"></i></button>
                                                     </td>
                                                 </tr>
@@ -262,11 +262,11 @@
                     let id_pustakawan = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Pustakawan');
-                    $('#form-tambah').attr('action', "<?= base_url('pustakawan/updatePustakawan'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Pustakawan/updatePustakawan'); ?>");
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('pustakawan/getPustakawan'); ?>",
+                        url: "<?= base_url('Pustakawan/getPustakawan'); ?>",
                         data: {
                             id_pustakawan: id_pustakawan
                         },
@@ -293,7 +293,7 @@
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: "<?= base_url('katalog_buku/deleteKatalog') ?>",
+                            url: "<?= base_url('Katalog_Buku/deleteKatalog') ?>",
                             data: {
                                 id: id
                             },

@@ -12,8 +12,6 @@ class Pengunjung extends CI_Controller
     function index()
     {
         $data['alldata'] = $this->pengunjung_model->getKategori()->result_array();
-        // $data['buku'] = $this->pengunjung_model->getKatalogBuku()->result_array();
-        // $data['pilih'] = $this->pengunjung_model->getDetailBuku()->result();
         $this->load->view('template/header_online', $data);
         $this->load->view('pengunjung', $data);
         $this->load->view('template/footer_online');

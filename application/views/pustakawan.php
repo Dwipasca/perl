@@ -164,7 +164,7 @@
                         'searching': true,
                         'info': true,
                         'autoWidth': false,
-                        "ajax": "<?= base_url('pustakawan/data'); ?>",
+                        "ajax": "<?= base_url('Pustakawan/data'); ?>",
                         "order": [
                             [2, 'asc']
                         ],
@@ -237,7 +237,7 @@
                     $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Pustakawan');
-                    $('#form-tambah').attr('action', "<?= base_url('pustakawan/tambahPustakawan'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Pustakawan/tambahPustakawan'); ?>");
                 });
                 $('#btnSave').click(function() {
                     let url = $('#form-tambah').attr('action');
@@ -273,8 +273,8 @@
                                     } else if (response.type == 'update') {
                                         type = 'diubah';
                                     }
-                                    // location.reload();
                                     $('.alert-success').html('Data Pustakawan telah berhasil ' + type).fadeIn().delay(4000).fadeOut('slow');
+                                    location.reload();
 
                                 } else {
                                     alert('gagal memasukkan data');
@@ -294,11 +294,11 @@
                     let id_pustakawan = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Pustakawan');
-                    $('#form-tambah').attr('action', "<?= base_url('pustakawan/updatePustakawan'); ?>");
+                    $('#form-tambah').attr('action', "<?= base_url('Pustakawan/updatePustakawan'); ?>");
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: "<?= base_url('pustakawan/getPustakawan'); ?>",
+                        url: "<?= base_url('Pustakawan/getPustakawan'); ?>",
                         data: {
                             id_pustakawan: id_pustakawan
                         },
@@ -334,7 +334,7 @@
                                 if (response.success) {
                                     $('#modal-danger').modal('hide');
                                     $('.alert-success').html('Data Pustakawan telah berhasil dihapus').fadeIn().delay(4000).fadeOut('slow');
-                                    // location.reload();
+                                    location.reload();
                                 } else {
                                     alert('gagal menghapus Lokasi')
                                 }

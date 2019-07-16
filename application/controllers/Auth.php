@@ -5,15 +5,15 @@ class Auth extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('auth_model');
+        $this->load->model('Auth_model');
     }
     function index()
     {
-        $this->load->view('auth/portal1');
+        $this->load->view('auth/login');
     }
     function anggota()
     {
-        $this->load->view('auth/login_anggota');
+        $this->load->view('auth/login');
     }
     function nonanggota()
     {
@@ -27,8 +27,8 @@ class Auth extends CI_Controller
     function pengunjung()
     {
         $no = $this->jumlahField('pengunjung');
-        $nama = $this->input->post('username');
-        $hp = $this->input->post('password');
+        $nama = $this->input->post('nama');
+        $hp = $this->input->post('hp');
         date_default_timezone_set('Asia/Makassar');
         $field = array(
             'id_pengunjung' => 'Pengunjung-00' . $no,
@@ -38,7 +38,7 @@ class Auth extends CI_Controller
             'tgl_kunjungan' => date('Y-m-d'),
             'jam_kunjungan' => date("H:i:s")
         );
-        $this->auth_model->addPengunjung($field);
+        $this->Auth_model->addPengunjung($field);
         redirect('pengunjung');
     }
     function cekLogin()
@@ -77,7 +77,7 @@ class Auth extends CI_Controller
                         'tgl_kunjungan' => date('Y-m-d'),
                         'jam_kunjungan' => date("H:i:s")
                     );
-                    $this->auth_model->addPengunjung($field);
+                    $this->Auth_model->addPengunjung($field);
                     redirect('pengunjung');
                 } else if ($jabatan == 'Pustakawan') {
                     redirect('peminjaman');

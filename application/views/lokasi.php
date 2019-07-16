@@ -112,7 +112,7 @@
                 function showAllData() {
                     $.ajax({
                         type: 'ajax',
-                        url: '<?= base_url('lokasi/showAllDataLokasi') ?>',
+                        url: '<?= base_url('Lokasi/showAllDataLokasi') ?>',
                         dataType: 'json',
                         success: function(data) {
                             let query = '';
@@ -139,7 +139,7 @@
                     $('#form-tambah')[0].reset();
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Tambah Lokasi');
-                    $('#form-tambah').attr('action', '<?= base_url('lokasi/tambahLokasi'); ?>');
+                    $('#form-tambah').attr('action', '<?= base_url('Lokasi/tambahLokasi'); ?>');
                 });
                 $('#btnSave').click(function() {
                     let url = $('#form-tambah').attr('action');
@@ -189,11 +189,11 @@
                     let id_lokasi = $(this).attr('data');
                     $('#modal-default').modal('show');
                     $('#modal-default').find('.modal-title').text('Ubah Lokasi');
-                    $('#form-tambah').attr('action', '<?= base_url('lokasi/updateLokasi'); ?>');
+                    $('#form-tambah').attr('action', '<?= base_url('Lokasi/updateLokasi'); ?>');
                     $.ajax({
                         type: 'ajax',
                         method: 'get',
-                        url: '<?= base_url('lokasi/getLokasi'); ?>',
+                        url: '<?= base_url('Lokasi/getLokasi'); ?>',
                         data: {
                             id_lokasi: id_lokasi
                         },
@@ -215,7 +215,7 @@
                         $.ajax({
                             type: 'ajax',
                             method: 'get',
-                            url: '<?= base_url('lokasi/hapusLokasi') ?>',
+                            url: '<?= base_url('Lokasi/hapusLokasi') ?>',
                             data: {
                                 id_lokasi: id_lokasi
                             },

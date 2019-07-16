@@ -5,16 +5,16 @@ class Katalog_Buku extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('katalog_buku_model');
+        $this->load->model('Katalog_Buku_model');
         if ($this->session->userdata('level') != 'Pustakawan') {
             redirect('auth');
         }
     }
     function index()
     {
-        $data['kategori'] = $this->katalog_buku_model->getDataKategori();
-        $data['lokasi'] = $this->katalog_buku_model->getDataLokasi();
-        $data['alldata'] = $this->katalog_buku_model->showAllData();
+        $data['kategori'] = $this->Katalog_Buku_model->getDataKategori();
+        $data['lokasi'] = $this->Katalog_Buku_model->getDataLokasi();
+        $data['alldata'] = $this->Katalog_Buku_model->showAllData();
         $this->load->view('template/header');
         $this->load->view('katalog_buku', $data);
         $this->load->view('template/footer');
@@ -62,14 +62,14 @@ class Katalog_Buku extends CI_Controller
                 $upload_gambar = $this->upload->data();
                 $data['file_cover'] = $upload_gambar['file_name'];
             }
-            $this->katalog_buku_model->addKatalogBuku($data);
+            $this->Katalog_Buku_model->addKatalogBuku($data);
             $this->session->set_flashdata('success', 'Katalog Buku Telah Berhasil Disimpan');
             redirect('katalog_buku');
         }
     }
     public function deleteKatalog()
     {
-        $result = $this->katalog_buku_model->deleteKatalog();
+        $result = $this->Katalog_Buku_model->deleteKatalog();
         $msg['success'] = false;
         if ($result) {
             $msg['success'] = true;

@@ -30,6 +30,12 @@ class Peminjaman_model extends CI_Model
     {
         return $this->db->get('katalog_buku')->result_array();
     }
+
+    function addPengunjung($data)
+    {
+        return $this->db->insert('pengunjung', $data);
+    }
+
     function addPeminjaman($data)
     {
         return $this->db->insert('peminjaman', $data);
@@ -47,6 +53,7 @@ class Peminjaman_model extends CI_Model
         $this->db->where('id_peminjaman', $id);
         return $this->db->update('peminjaman', $data);
     }
+
     function deletePeminjaman()
     {
         $id = $this->input->get('id_peminjaman');
